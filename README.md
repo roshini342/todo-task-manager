@@ -45,17 +45,13 @@ Access the deployed app here: [https://todo-task-manager-66d9.onrender.com](http
    npm install
    ```
 
-3. Create `.env` file in backend folder with:
-   ```env
-   MONGO_URI=mongodb+srv://717822d144:roshini15@cluster0.iccjrzd.mongodb.net/tododb?retryWrites=true&w=majority&appName=Cluster0
-   ```
 
-4. Start backend server
+3. Start backend server
    ```bash
    npm start
    ```
 
-5. Setup frontend
+4. Setup frontend
    ```bash
    cd ../frontend
    npm install
