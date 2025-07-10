@@ -4,27 +4,24 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './todo.css';
 
+const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:5000';
+
 export default function TodoWrapper() {
   const [username, setUsername] = useState('');
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState('all');
   const navigate = useNavigate();
 
-  // Load username from localStorage
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser');
-    if (storedUser) {
-      setUsername(storedUser);
-    } else {
-      navigate('/login');
-    }
+    if (storedUser) setUsername(storedUser);
+    else navigate('/login');
   }, [navigate]);
 
-  // Fetch todos for the logged-in user
   useEffect(() => {
     if (username) {
       axios
-        .get(`http://localhost:5000/api/todos?user=${username}`)
+        .get(`${API_BASE}/api/todos?user=${username}`)
         .then(res => setTodos(res.data))
         .catch(err => {
           console.error(err);
@@ -35,16 +32,15 @@ export default function TodoWrapper() {
 
   const addTodo = (text) => {
     if (!text.trim()) return;
-
     axios
-      .post('http://localhost:5000/api/todos', { task: text, user: username })
+      .post(`${API_BASE}/api/todos`, { task: text, user: username })
       .then(res => setTodos([...todos, res.data]))
       .catch(err => console.error(err));
   };
 
   const toggleComplete = (id) => {
     axios
-      .put(`http://localhost:5000/api/todos/${id}/toggle`)
+      .put(`${API_BASE}/api/todos/${id}/toggle`)
       .then(() => {
         setTodos(todos.map(todo =>
           todo._id === id ? { ...todo, completed: !todo.completed } : todo
@@ -54,7 +50,7 @@ export default function TodoWrapper() {
 
   const deleteTodo = (id) => {
     axios
-      .delete(`http://localhost:5000/api/todos/${id}`)
+      .delete(`${API_BASE}/api/todos/${id}`)
       .then(() => setTodos(todos.filter(todo => todo._id !== id)));
   };
 
@@ -66,7 +62,7 @@ export default function TodoWrapper() {
 
   const updateTodo = (value, id) => {
     axios
-      .put(`http://localhost:5000/api/todos/${id}`, { task: value })
+      .put(`${API_BASE}/api/todos/${id}`, { task: value })
       .then(res => {
         setTodos(todos.map(todo =>
           todo._id === id ? { ...res.data, isEditing: false } : todo
@@ -87,7 +83,6 @@ export default function TodoWrapper() {
 
   const TodoForm = ({ addTodo }) => {
     const [value, setValue] = useState('');
-
     const handleSubmit = (e) => {
       e.preventDefault();
       if (value.trim()) {
@@ -95,7 +90,6 @@ export default function TodoWrapper() {
         setValue('');
       }
     };
-
     return (
       <form onSubmit={handleSubmit} className="TodoForm">
         <input
@@ -112,14 +106,10 @@ export default function TodoWrapper() {
 
   const EditTodoForm = ({ task, editTodo }) => {
     const [value, setValue] = useState(task.task);
-
     const handleSubmit = (e) => {
       e.preventDefault();
-      if (value.trim()) {
-        editTodo(value, task._id);
-      }
+      if (value.trim()) editTodo(value, task._id);
     };
-
     return (
       <form onSubmit={handleSubmit} className="TodoForm">
         <input
