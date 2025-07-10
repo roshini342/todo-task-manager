@@ -30,13 +30,17 @@ export default function TodoWrapper() {
     }
   }, [username]);
 
-  const addTodo = (text) => {
-    if (!text.trim()) return;
-    axios
-      .post(`${API_BASE}/api/todos`, { task: text, user: username })
-      .then(res => setTodos([...todos, res.data]))
-      .catch(err => console.error(err));
-  };
+const addTodo = (text) => {
+  if (!text.trim()) return;
+
+  axios
+    .post(`${API_BASE}/api/todos`, { task: text, user: username })
+    .then(res => {
+      console.log('POST response:', res.data); // 👈 This is the new todo!
+      setTodos([...todos, res.data]);
+    })
+    .catch(err => console.error(err));
+};
 
   const toggleComplete = (id) => {
     axios
