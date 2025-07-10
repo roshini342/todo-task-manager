@@ -35,7 +35,7 @@ app.get('/api/todos', async (req, res) => {
 app.post('/api/todos', async (req, res) => {
   try {
     const { task, user } = req.body;
-    const newTodo = new Todo({ task, user });
+const newTodo = new Todo({ task, user, completed: false });
     await newTodo.save();
     res.status(201).json(newTodo);
   } catch (error) {
