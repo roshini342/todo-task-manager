@@ -79,11 +79,22 @@ todo-task-manager/
 
 ## 📷 Architecture Diagram
 
-[Upload your diagram here or add the image link]
+[User's Browser]
+       |
+       v
+[Frontend App (React/HTML)]
+       |
+       v
+[Backend Server (Node.js / Express)]
+       |
+       v
+[MongoDB Atlas Database Cluster]
+       |
+       v
+[Backup & Monitoring Services (Atlas)]
 
-## 📹 Loom Video Walkthrough
 
-[Add your Loom video link here demonstrating your app]
+
 
 ---
 
