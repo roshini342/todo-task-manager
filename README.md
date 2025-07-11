@@ -80,13 +80,17 @@ todo-task-manager/
 ## Architecture Diagram
 
 - User's Browser
-  ↓
+  
+         ↓
 - Frontend App (React / HTML)
-  ↓
+  
+         ↓
 - Backend Server (Node.js / Express)
-  ↓
+  
+          ↓
 - MongoDB Atlas Database Cluster
-  ↓
+ 
+          ↓
 - Backup & Monitoring Services (Atlas)
 
 
