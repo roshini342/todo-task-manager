@@ -77,21 +77,17 @@ todo-task-manager/
 └── README.md
 ```
 
-## 📷 Architecture Diagram
+## Architecture Diagram
 
-[User's Browser]
-       |
-       v
-[Frontend App (React/HTML)]
-       |
-       v
-[Backend Server (Node.js / Express)]
-       |
-       v
-[MongoDB Atlas Database Cluster]
-       |
-       v
-[Backup & Monitoring Services (Atlas)]
+- User's Browser
+  ↓
+- Frontend App (React / HTML)
+  ↓
+- Backend Server (Node.js / Express)
+  ↓
+- MongoDB Atlas Database Cluster
+  ↓
+- Backup & Monitoring Services (Atlas)
 
 
 
