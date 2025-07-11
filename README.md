@@ -22,7 +22,7 @@ A full-stack task management web application where users can sign up, log in, an
 
 ## 🔗 Live Demo
 
-Access the deployed app here: [https://todo-task-manager-66d9.onrender.com](https://todo-task-manager-66d9.onrender.com)
+Access the deployed app here: [https://todo-task-manager-66d9.onrender.com](https://todo-task-manager-shin.vercel.app/)
 
 ## 🚀 Installation (Local Setup)
 
